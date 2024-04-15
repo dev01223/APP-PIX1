@@ -37,8 +37,8 @@ DATABASES = {
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['appPix.onrender.com', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://appPix.onrender.com/*', 'http://127.0.0.1/*']
+ALLOWED_HOSTS = ['appPix1.onrender.com', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://appPix1.onrender.com/*', 'http://127.0.0.1/*']
 
 
 
