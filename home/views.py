@@ -9,6 +9,32 @@ def home_view(request):
     return render(request, 'core/index.html')
 # Create your views here.
 
+def inicio(request):
+    return render(request, 'core/inicio.html')
+
+def cadastro(request):
+    return render(request, 'core/cadastro.html')
+
+def cupom1(request):
+    return render(request, 'core/cupom1.html')
+
+def cupom2(request):
+    return render(request, 'core/cupom2.html')
+
+def cupom3(request):
+    return render(request, 'core/cupom3.html')
+
+def prevsl(request):
+    return render(request, 'core/prevsl.html')
+
+def vsl(request):
+    return render(request, 'core/vsl.html')
+
+def saqueTeste(request):
+    return render(request, 'core/saqueTeste.html')
+
+
+
 
 @csrf_exempt
 @require_http_methods(["POST"])

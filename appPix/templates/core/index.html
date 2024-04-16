@@ -1,60 +1,32 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transferência PIX</title>
-</head>
-<body>
-    <form id="transferenciaForm">
-        {% csrf_token %}
-        <input type="text" name="chave_pix" placeholder="Chave PIX" required>
-        <select name="tipo_chave">
-            <option value="document">CPF</option>
-            <option value="email">Email</option>
-            <option value="phoneNumber">Celular</option>
-            <option value="randomKey">Chave Aleatória</option>
-        </select>
-        <input type="number" step="0.01" name="valor" placeholder="Valor" required>
-        <button type="submit">Enviar</button>
-    </form>
 
-    <!-- Div para mensagens de status -->
-    <div id="statusMessage"></div>
+{%extends 'core/base.html'%}
+{%load static%}
 
-    <script>
-        document.getElementById('transferenciaForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            fetch('/transferencia_pix/', {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-                    'Content-Type': 'application/x-www-form-urlencoded', // Assegure que o Content-Type esteja definido corretamente
-                },
-                body: new URLSearchParams(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Vamos logar a resposta e atualizar a interface do usuário
-                console.log(data);
-                const statusDiv = document.getElementById('statusMessage');
-                if(data.status === 'success') {
-                    statusDiv.textContent = data.message; // Mensagem de sucesso
-                    statusDiv.style.color = 'green';
-                } else {
-                    statusDiv.textContent = data.message; // Mensagem de erro ou outro feedback
-                    statusDiv.style.color = 'red';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                const statusDiv = document.getElementById('statusMessage');
-                statusDiv.textContent = 'Erro ao se conectar com o servidor.';
-                statusDiv.style.color = 'red';
-            });
-        });
-    </script>
-</body>
-</html>
+{%block 'conteudo'%}
+    <body class="fundo1" onLoad="setTimeout('redirectTime()', 3000)">
+
+
+
+        <div style="width: 60%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" id="p1">
+       
+            <img style="position: absolute; left: 0;" src="{%static 'images/logo.png' %}" />
+
+            <div style="display: flex; margin-top: 60px; justify-content: space-evenly;">
+                    <h1 class="loading" style="width: 20px; height: 20px;"></h1>
+                    <h1 class="carregandoCodigo">CARREGANDO...</h1>
+                    </div>
+
+            </div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="assets/js/funcoes.js"></script>
+            <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool' url='https://google.com.br'></script>
+        <script>
+            // REDIRECIONAMENTO LOADING
+            function redirectTime(){
+                window.location = "/inicio"
+            }
+            // REDIRECIONAMENTO LOADING
+        </script>
+
+{%endblock%}
