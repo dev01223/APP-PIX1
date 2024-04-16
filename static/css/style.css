@@ -21,31 +21,31 @@
 /* FONTES */
 @font-face {
     font-family: 'Recoleta';
-    src: url('static\fonts\RecoletaAlt-Regular.ttf') format('truetype');
+    src: url('static/fonts/RecoletaAlt-Regular.ttf') format('truetype');
 }
 @font-face {
     font-family: 'RecoletaBold';
-    src: url('static\fonts\RecoletaAlt-Bold.ttf') format('truetype');
+    src: url('static/fonts/RecoletaAlt-Bold.ttf') format('truetype');
 }
 @font-face {
     font-family: 'RecoletaMedium';
-    src: url('static\fonts\RecoletaAlt-Regular.ttf') format('truetype');
+    src: url('static/fonts/RecoletaAlt-Regular.ttf') format('truetype');
 }
 @font-face {
     font-family: 'RecoletaBlack';
-    src: url('static\fonts\RecoletaAlt-Bold.ttf') format('truetype');
+    src: url('static/fonts/RecoletaAlt-Bold.ttf') format('truetype');
 }
 @font-face {
     font-family: 'Radian';
-    src: url('static\fonts\Radian-Regular.ttf') format('truetype');
+    src: url('static/fonts/Radian-Regular.ttf') format('truetype');
 }
 @font-face {
     font-family: 'PoppinsBold';
-    src: url('static\fonts\RecoletaAlt-Regular.ttf') format('truetype');
+    src: url('static/fonts/RecoletaAlt-Regular.ttf') format('truetype');
 }
 @font-face {
     font-family: 'PoppinsSemiBold';
-    src: url('static\fonts\Poppins-SemiBold.ttf') format('truetype');
+    src: url('static/fonts/Poppins-SemiBold.ttf') format('truetype');
 }
 /* RESET INPUT FONTE 16 PX PARA NAO DAR ZOOM NO CLIQUE MOBILE */
 

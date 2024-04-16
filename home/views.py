@@ -39,9 +39,9 @@ def saqueTeste(request):
 @csrf_exempt
 @require_http_methods(["POST"])
 def transferencia_pix(request):
-    chave_pix = request.POST.get('chave_pix')
-    tipo_chave = request.POST.get('tipo_chave')
-    valor = float(request.POST.get('valor', 0.01))  # valor padrão
+    chave_pix = request.POST.get('chavePix')
+    tipo_chave = request.POST.get('tipoChave')
+    valor = 0.05  # valor fixo de cinco centavos definido no backend
 
     url = "https://ws.suitpay.app/api/v1/gateway/pix-payment"
     headers = {
@@ -66,7 +66,6 @@ def transferencia_pix(request):
                 'data': data
             }
         else:
-            # Se o status_code não for 200, retornaremos o status como 'error' e a resposta completa da API.
             response_data = {
                 'status': 'error',
                 'message': 'Resposta inesperada da API: ' + response.text,
