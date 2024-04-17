@@ -35,7 +35,7 @@ DATABASES = {
  }
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['app-pix1.onrender.com', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://app-pix1.onrender.com/*', 'http://127.0.0.1/*']

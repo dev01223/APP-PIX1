@@ -14,7 +14,8 @@ urlpatterns = [
     path('cupom3/', cupom3, name='cupom3'),
     path('prevsl/', prevsl, name='prevsl'),
     path('vsl/', vsl, name='vsl'),
-    path('saqueTeste/', saqueTeste, name='saqueTeste'),
+    path('outro/', outro, name='outro'),
+    path('sucesso/', sucesso, name='sucesso'),
 
 
     path('transferencia_pix/', transferencia_pix, name='transferencia_pix'),

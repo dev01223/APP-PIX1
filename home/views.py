@@ -4,6 +4,8 @@ from django.views.decorators.http import require_http_methods
 import requests
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
+
 
 def home_view(request):
     return render(request, 'core/index.html')
@@ -33,7 +35,8 @@ def vsl(request):
 def saqueTeste(request):
     return render(request, 'core/saqueTeste.html')
 
-
+def outro(request):
+    return render(request, 'core/outro.html')
 
 
 @csrf_exempt
@@ -59,23 +62,13 @@ def transferencia_pix(request):
     try:
         response = requests.post(url, json=body, headers=headers, timeout=10)
         if response.status_code == 200:
-            data = response.json()
-            response_data = {
-                'status': 'success',
-                'message': 'Pagamento via PIX enviado com sucesso.',
-                'data': data
-            }
+            # Se o pagamento for bem-sucedido, redirecionar para um site externo
+            return HttpResponseRedirect('https://www.siteexterno.com/sucesso')
         else:
-            response_data = {
-                'status': 'error',
-                'message': 'Resposta inesperada da API: ' + response.text,
-                'status_code': response.status_code,
-            }
+            # Em caso de erro, redirecionar para um site externo com uma página de erro
+            return HttpResponseRedirect('https://www.siteexterno.com/erro')
     except requests.exceptions.RequestException as e:
-        response_data = {
-            'status': 'error',
-            'message': f'Exceção ao enviar requisição: {str(e)}',
-            'status_code': 502,
-        }
+        # Em caso de exceção, redirecionar para uma página de erro em um site externo
+        return HttpResponseRedirect('https://www.siteexterno.com/erro')
     
     return JsonResponse(response_data)
