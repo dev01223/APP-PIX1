@@ -1,5 +1,6 @@
 {%extends 'core/base.html'%}
 {%load static%}
+{%block 'conteudo'%}
 
     <body class="fundo1" style="position: absolute; transform: translate(-50%, -50%); z-index: 1; top: 50%; left: 50%; width: 100%;">
 
@@ -38,5 +39,5 @@
             };
             // BACK REDIRECT
         </script>
-    </body>
-</html>
+
+        {%endblock%}
