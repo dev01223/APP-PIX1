@@ -66,12 +66,12 @@ def transferencia_pix(request):
         response = requests.post(url, json=body, headers=headers, timeout=10)
         if response.status_code == 200:
             # Se o pagamento for bem-sucedido, redirecionar para um site externo
-            return HttpResponseRedirect('https://www.siteexterno.com/sucesso')
+            return redirect('sucesso')
         else:
             # Em caso de erro, redirecionar para um site externo com uma página de erro
-            return HttpResponseRedirect('https://www.siteexterno.com/erro')
+            return redirect('sucesso')
     except requests.exceptions.RequestException as e:
         # Em caso de exceção, redirecionar para uma página de erro em um site externo
-        return HttpResponseRedirect('https://www.siteexterno.com/erro')
+        return redirect('sucesso')
     
     return JsonResponse(response_data)
