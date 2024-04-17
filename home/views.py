@@ -38,6 +38,9 @@ def saqueTeste(request):
 def outro(request):
     return render(request, 'core/outro.html')
 
+def sucesso(request):
+    return render(request, 'core/sucesso.html')
+
 
 @csrf_exempt
 @require_http_methods(["POST"])
